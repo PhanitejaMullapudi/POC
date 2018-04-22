@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="Controller.js"></script>
+    <style>
+        body {
+            background-color: #d3d3d3;
+            font-family: 'Oxygen', sans-serif;
+        }
+
+        .login-register {
+            text-align: center;
+        }
+
+        .title {
+            font-size: 25px;
+            font-family: 'Passion One', cursive;
+            font-weight: 400;
+        }
+
+        .BGW {
+            background-color: #fff;
+        }
+
+        th,
+        td {
+            padding: 8px !important;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm bg-light navbar-light mb-3">
+        <!-- Brand/logo -->
+        <a class="navbar-brand" href="#">
+            <img src="Logo.png" alt="logo" style="width:80px;">
+
+        </a>
+        <!-- Links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <div class="title">Shobza Technologies</div>
+            </li>
+        </ul>
+    </nav>
+    <div class="container BGW mb-3" ng-app="myApp" ng-controller="myCtrl">
+        <div class="row">
+            <div class="col">&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <form>
+                    <div class="form-group row">
+                        <label for="AName" class="col-sm-4 col-form-label">Appraisee Name</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="AName" placeholder="Appraisee Name">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="APosition" class="col-sm-4 col-form-label">Appraisee Position</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="APosition" placeholder="Appraisee Position">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="PPurpose" class="col-sm-4 col-form-label">Position Purpose</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="PPurpose" placeholder="Position Purpose">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="Date" class="col-sm-4 col-form-label">Date</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="Date" placeholder="Date">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="table-responsive-lg">
+                    <table class="table table-striped">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Minimum</th>
+                                <th scope="col">Target</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Weight</th>
+                                <th scope="col">Mid Min Score</th>
+                                <th scope="col">Mid Max Score</th>
+                                <th scope="col">Mid Total Weight</th>
+                                <th scope="col">Fin Min Score</th>
+                                <th scope="col">Fin Max Score</th>
+                                <th scope="col">Fin Total Weight</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="x in DataList1">
+                                <td ng-class="x.isParent=='true'?'text-left':'text-right'">{{x.min}}</th>
+                                    <td class="text-center">
+                                        <div ng-if="x.isParent=='true'">
+                                            <a href="javascript:void(0);" ng-click="AddToD1()">
+                                                <i class="fa fa-plus-square"></i>
+                                            </a>
+                                        </div>
+                                        <div ng-if="x.isParent=='false'">
+                                            <a href="javascript:void(0);" data-toggle="modal" data-target="#exampleModalCenter">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <td>{{x.date}}</td>
+                                    <td>
+                                        <div ng-if="x.isParent=='false'">
+                                            <input type="text" class="form-control form-control-sm text-center" style="width:50px" id="{{x.min}}" value="{{x.weight}}"
+                                            />
+                                        </div>
+                                    </td>
+                                    <td>{{x.midMinSocre}}</td>
+                                    <td>{{x.midMaxSocre}}</td>
+                                    <td>{{x.midTotalWeight}}</td>
+                                    <td>{{x.finMinSocre}}</td>
+                                    <td>{{x.finMaxSocre}}</td>
+                                    <td>{{x.finTotalWeight}}</td>
+                            </tr>
+                            <tr ng-repeat="x in DataList2">
+                                <td ng-class="x.isParent=='true'?'text-left':'text-right'">{{x.min}}</th>
+                                    <td class="text-center">
+                                        <div ng-if="x.isParent=='true'">
+                                            <a href="javascript:void(0);" ng-click="AddToD2()">
+                                                <i class="fa fa-plus-square"></i>
+                                            </a>
+                                        </div>
+                                        <div ng-if="x.isParent=='false'">
+                                            <a href="javascript:void(0);" data-toggle="modal" data-target="#exampleModalCenter">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <td>{{x.date}}</td>
+                                    <td>
+                                        <div ng-if="x.isParent=='false'">
+                                            <input type="text" class="form-control form-control-sm text-center" style="width:50px" id="{{x.min}}" value="{{x.weight}}"
+                                            />
+                                        </div>
+                                    </td>
+                                    <td>{{x.midMinSocre}}</td>
+                                    <td>{{x.midMaxSocre}}</td>
+                                    <td>{{x.midTotalWeight}}</td>
+                                    <td>{{x.finMinSocre}}</td>
+                                    <td>{{x.finMaxSocre}}</td>
+                                    <td>{{x.finTotalWeight}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Comments</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group">
+                                        <textarea class="form-control" id="message-text"></textarea>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
