@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -16,8 +16,20 @@
     <script src="Controller.js"></script>
     <style>
         body {
-            background-color: #d3d3d3;
+
             font-family: 'Oxygen', sans-serif;
+            background-color: #f2f2f2
+        }
+
+        .container-bg {
+            background-color: #fff;
+            /* shadows and rounded borders */
+            -moz-border-radius: 2px;
+            -webkit-border-radius: 2px;
+            border-radius: 2px;
+            -moz-box-shadow: 0px 2px 28px rgba(0, 0, 0, 0.5);
+            -webkit-box-shadow: 0px 2px 28px rgba(0, 0, 0, 0.5);
+            box-shadow: 0px 2px 28px rgba(0, 0, 0, 0.5);
         }
 
         .login-register {
@@ -25,7 +37,7 @@
         }
 
         .title {
-            font-size: 25px;
+            font-size: 30px;
             font-family: 'Passion One', cursive;
             font-weight: 400;
         }
@@ -38,14 +50,84 @@
         td {
             padding: 8px !important;
         }
+
+        .header {
+            background: -webkit-linear-gradient(-90deg, #16222A 10%, #3A6073 90%);
+            /* Chrome 10+, Saf5.1+ */
+            background: -moz-linear-gradient(-90deg, #16222A 10%, #3A6073 90%);
+            /* FF3.6+ */
+            background: -ms-linear-gradient(-90deg, #16222A 10%, #3A6073 90%);
+            /* IE10 */
+            background: -o-linear-gradient(-90deg, #16222A 10%, #3A6073 90%);
+            /* Opera 11.10+ */
+            background: linear-gradient(-90deg, #16222A 10%, #3A6073 90%);
+            /* W3C */
+            color: #fff;
+        }
+
+        .btn-custom {
+            color: #fff;
+            background-color: #16222A;
+            border-color: #16222A;
+        }
+
+        .btn-custom:hover {
+            color: #fff;
+            background-color: #3A6073;
+            border-color: #3A6073;
+        }
+
+        .table-custom {
+            font-family: sans-serif !important;
+            border: solid 1px #16222A;
+        }
+
+        .table-custom tr td {
+            border: solid 1px #16222A;
+        }
+
+        .table-custom thead th {
+            color: #fff;
+            background-color: #16222A;
+            font-size: 14px;
+            border: solid 1px #16222A;
+            text-align: center;
+        }
+
+        .gridIcons {
+            color: #16222A
+        }
+
+        .gridIcons:hover {
+            color: #16222A
+        }
+
+        a {
+            font-family: 'Oxygen', sans-serif !important;
+            color: #16222A !important;
+            font-weight: bold !important;
+            font-size: 14px !important;
+        }
+
+            a:hover {
+                font-family: 'Oxygen', sans-serif !important;
+                color: #16222A !important;
+                font-weight: bold !important;
+                font-size: 14px !important;
+            }
+
+        .ml-auto .dropdown-menu {
+            left: auto !important;
+            right: 0px;
+        }
     </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-sm bg-light navbar-light mb-3">
+    <nav class="navbar navbar-expand-sm header">
         <!-- Brand/logo -->
         <a class="navbar-brand" href="#">
-            <img src="Logo.png" alt="logo" style="width:80px;">
+            <img src="Logo1.png" alt="logo" style="width:100px;">
 
         </a>
         <!-- Links -->
@@ -55,7 +137,45 @@
             </li>
         </ul>
     </nav>
-    <div class="container BGW mb-3" ng-app="myApp" ng-controller="myCtrl">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact Us</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        Acount
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="Login.html">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container ">
+        <div class="row">
+            <div class="col">&nbsp;</div>
+        </div>
+    </div>
+    <div class="container BGW mb-3 container-bg effect2" ng-app="myApp" ng-controller="myCtrl">
         <div class="row">
             <div class="col">&nbsp;</div>
         </div>
@@ -92,8 +212,8 @@
         <div class="row">
             <div class="col">
                 <div class="table-responsive-lg">
-                    <table class="table table-striped">
-                        <thead class="thead-light">
+                    <table class="table table-custom">
+                        <thead class="">
                             <tr>
                                 <th scope="col">Minimum</th>
                                 <th scope="col">Target</th>
@@ -112,12 +232,12 @@
                                 <td ng-class="x.isParent=='true'?'text-left':'text-right'">{{x.min}}</th>
                                     <td class="text-center">
                                         <div ng-if="x.isParent=='true'">
-                                            <a href="javascript:void(0);" ng-click="AddToD1()">
+                                            <a href="javascript:void(0);" ng-click="AddToD1()" class="gridIcons">
                                                 <i class="fa fa-plus-square"></i>
                                             </a>
                                         </div>
                                         <div ng-if="x.isParent=='false'">
-                                            <a href="javascript:void(0);" data-toggle="modal" data-target="#exampleModalCenter">
+                                            <a href="javascript:void(0);" data-toggle="modal" class="gridIcons" data-target="#exampleModalCenter">
                                                 <i class="fa fa-edit"></i>
                                             </a>
                                         </div>
@@ -140,12 +260,12 @@
                                 <td ng-class="x.isParent=='true'?'text-left':'text-right'">{{x.min}}</th>
                                     <td class="text-center">
                                         <div ng-if="x.isParent=='true'">
-                                            <a href="javascript:void(0);" ng-click="AddToD2()">
+                                            <a href="javascript:void(0);" ng-click="AddToD2()" class="gridIcons">
                                                 <i class="fa fa-plus-square"></i>
                                             </a>
                                         </div>
                                         <div ng-if="x.isParent=='false'">
-                                            <a href="javascript:void(0);" data-toggle="modal" data-target="#exampleModalCenter">
+                                            <a href="javascript:void(0);" data-toggle="modal" data-target="#exampleModalCenter" class="gridIcons">
                                                 <i class="fa fa-edit"></i>
                                             </a>
                                         </div>
@@ -185,7 +305,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                                <button type="button" class="btn btn-custom" data-dismiss="modal">Save changes</button>
                             </div>
                         </div>
                     </div>
